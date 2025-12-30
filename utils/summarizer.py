@@ -1,6 +1,8 @@
 import google.generativeai as genai
 import os
+import time
 from pathlib import Path
+from utils.chunker import chunk_text
 
 def get_prompt(prompt_name):
     """Load prompt template from file."""
@@ -8,7 +10,7 @@ def get_prompt(prompt_name):
     with open(prompt_path, "r", encoding="utf-8") as f:
         return f.read()
 
-def configure_llm(model_name="gemini-flash-latest"):
+def configure_llm(model_name="gemini-2.5-flash-lite"):
     """Configure the Gemini LLM API."""
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
@@ -21,8 +23,6 @@ def configure_llm(model_name="gemini-flash-latest"):
         model_full_path = model_name
         
     return genai.GenerativeModel(model_full_path)
-
-from utils.chunker import chunk_text
 
 def generate_summary(text, model):
     """Summarize legal document using LLM with chunking support."""
@@ -45,6 +45,10 @@ def generate_summary(text, model):
     for i, chunk in enumerate(chunks):
         chunk_prompt = f"Summarize this part of a legal document (Part {i+1}):\n\n{chunk}"
         try:
+            # Small delay to respect 10 RPM limit of Flash-Lite
+            if i > 0:
+                time.sleep(2)
+                
             response = model.generate_content(chunk_prompt)
             chunk_summaries.append(response.text)
         except Exception as e:
@@ -55,6 +59,8 @@ def generate_summary(text, model):
     final_prompt = f"{prompt_template}\n\nSummarized Parts:\n{combined_text}"
     
     try:
+        # Final small delay before last call
+        time.sleep(2)
         final_response = model.generate_content(final_prompt)
         return final_response.text
     except Exception as e:

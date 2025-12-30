@@ -26,7 +26,7 @@ with st.sidebar:
     st.info("This tool uses AI to simplify complex legal documents into plain English.")
 
 # Default model selection (moved from sidebar)
-model_option = "gemini-flash-latest"
+model_option = "gemini-2.5-flash-lite"
 
 # Input Method Selection
 input_method = st.radio("Choose Input Method:", ["Upload File", "Paste Text Manually"])
@@ -72,7 +72,7 @@ if raw_text:
                         st.markdown(summary)
                 
                 # Small delay to prevent API Quota limits (Free Tier)
-                time.sleep(3)
+                time.sleep(2)
                 
                 with risk_col:
                     with st.spinner("🚩 Detecting risks..."):

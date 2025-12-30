@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import time
 from dotenv import load_dotenv
 from utils.pdf_loader import extract_text
 from utils.text_cleaner import clean_text
@@ -69,6 +70,9 @@ if raw_text:
                         summary = generate_summary(cleaned_text, model)
                         st.subheader("📌 Executive Summary")
                         st.markdown(summary)
+                
+                # Small delay to prevent API Quota limits (Free Tier)
+                time.sleep(3)
                 
                 with risk_col:
                     with st.spinner("🚩 Detecting risks..."):

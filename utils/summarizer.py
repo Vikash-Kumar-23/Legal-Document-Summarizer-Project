@@ -1,5 +1,6 @@
 import google.generativeai as genai
 import os
+import time
 from pathlib import Path
 
 def get_prompt(prompt_name):
@@ -43,6 +44,10 @@ def generate_summary(text, model):
     # 2. Multi-chunk processing
     chunk_summaries = []
     for i, chunk in enumerate(chunks):
+        # Small delay to respect free tier RPM limits
+        if i > 0:
+            time.sleep(1.5)
+            
         chunk_prompt = f"Summarize this part of a legal document (Part {i+1}):\n\n{chunk}"
         try:
             response = model.generate_content(chunk_prompt)
@@ -51,6 +56,8 @@ def generate_summary(text, model):
             print(f"Error processing chunk {i+1}: {e}")
             
     # 3. Combine and generate final summary
+    # Final delay before the merge call
+    time.sleep(1.5)
     combined_text = "\n\n".join(chunk_summaries)
     final_prompt = f"{prompt_template}\n\nSummarized Parts:\n{combined_text}"
     

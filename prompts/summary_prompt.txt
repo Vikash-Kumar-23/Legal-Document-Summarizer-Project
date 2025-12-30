@@ -1,0 +1,27 @@
+Rewrite the following legal document into a VERY SIMPLE summary for a non-lawyer. 
+Use short sentences and NO legal jargon.
+
+RULES:
+1. If you see legal jargon (e.g., "Indemnity", "Lessor", "Force Majeure"), explain what it means in simple English.
+2. Maintain an informative tone. Do NOT give legal advice. 
+3. Focus on the most important points so a non-technical user can understand at a glance.
+
+Structure your response exactly like this:
+
+### 📝 What is this document?
+(One simple sentence explaining the type of agreement)
+
+### 👥 Who is involved?
+- **Owner/Giver:** (Name)
+- **Receiver/User:** (Name)
+
+### 🔑 Most Important Rules
+- (Rule 1 in plain English)
+- (Rule 2 in plain English)
+
+### 📅 Dates & Money
+- **How much:** (Price/Cost)
+- **Important Date:** (Deadline or End Date)
+
+### 🚪 How to end the deal
+(One simple bullet point on how to cancel or exit)

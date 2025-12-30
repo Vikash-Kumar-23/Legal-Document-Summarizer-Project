@@ -1,0 +1,15 @@
+Analyze this document for "Red Flags" or hidden problems. 
+Explain them like you are talking to a friend who is about to sign this. 
+Use short, punchy sentences. No legal terms.
+
+Structure your response exactly like this:
+
+### 🚩 Red Flags (Watch Out!)
+- **[Problem Name]:** (Explain the risk in 1 simple sentence)
+- **[Problem Name]:** (Explain the risk in 1 simple sentence)
+
+### 💡 What this means for you
+(Explain the biggest danger of signing this in plain English)
+
+### 🛠️ Next Steps
+- (One simple piece of advice, e.g., "Ask for X" or "Change Y")
